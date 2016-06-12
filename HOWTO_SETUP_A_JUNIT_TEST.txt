@@ -1,0 +1,71 @@
+HOWTO TO START CREATING A JUNIT TEST IN INTELLIJ IDEA
+=====================================================
+
+0.  Make sure the project to be tested is already open.
+
+1.  o Open the class for which you want to create a unit test
+    o Place the cursor on the line declaring the class (e.g. public class Animal { ...)
+    o Open the intened actions menu with shortcut alt-enter (both for Windows and Mac)
+    o Here you can select "create test" option
+    o A dialog will appear in which you can select the test library. Which is JUNIT4.
+      Also you can specify for which methods in the class under test, corresponding test methods should be generated.
+
+2.  You can repeat step 1 for al the classes you will need unit test classes for.
+
+
+-------------------------------
+
+Further information
+http://junit.sourceforge.net/javadoc/org/junit/package-summary.html
+http://junit.sourceforge.net/javadoc/org/junit/Assert.html
+
+-------------------------------
+
+A quick list of available assert-methods:
+assertArrayEquals
+assertEquals
+assertFalse
+assertNotNull
+assertNotSame
+assertNull
+assertSame
+assertThat
+assertTrue
+fail
+
+
+HOWTO TO START CREATING A JUNIT TEST IN ECLIPSE
+===============================================
+
+0.  Make sure the project to be tested is already open.
+
+1.  o Create a new project e.g. xxxTest
+	o Select: use the "default JRE"
+    o In the next window: "New Java Project",
+	    select the "Projects" tab
+	o Then add the project to be tested to the working set
+
+2.  Repeat as needed:
+    Open your new project and create a new JUnit Test Case
+	o At the top make sure it will be a version 4 test
+	o Give the test a name, e.g. xxxTest.java
+	o Select the class to be tested from the other project
+	o In the next window select which methods will be tested
+	  This will generate a basic set of testcases
+
+	The first time you do this in the new project
+	eclipse will offer to add JUnit to the build path;
+	Accept this offer.
+
+The first time you run a testcase
+you have to select the preferred launcher;
+In this case select the Eclipse JUnit Launcher.
+
+WARNING:
+If you have a test-method selected, i.e. your cursor
+is inside that method, running the test will create
+a launcher for that method only!
+So either make sure the cursor is positioned
+between methods, or select the file in the
+package explorer list on the left.
+
