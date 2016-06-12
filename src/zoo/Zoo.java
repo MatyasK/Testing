@@ -75,9 +75,9 @@ public class Zoo
 	// Remove an animal
 	public void removeAnimal(String animalKind, String animalName) {
         assert animalKind != null : "the animalkind is null";
-        assert animalKind.isEmpty() : "empty kind";
+        assert !animalKind.isEmpty() : "empty kind";
         assert animalName != null : "the animalName is null";
-        assert animalName.isEmpty() : "empty animal name";
+        assert !animalName.isEmpty() : "empty animal name";
 
 		Cage cage = findCage(animalKind);	// find it's cage
 		// Second Assignment: This is should be done by the cage!

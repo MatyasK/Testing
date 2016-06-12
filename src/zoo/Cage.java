@@ -57,12 +57,13 @@ public class Cage
 	// Add animal to the cage itself
 	public void addAnimal(Animal animal){
 		assert animal != null : "the animal is null";
-		assert the_animals.get(animal.getName()) == null : "this animal is already exist";
+		assert !the_animals.containsKey(animal.getName()) : "this animal is already exist";
 		the_animals.put(animal.getName(), animal);
 	}
 
 	public void removeAnimal(String animal){
 		assert animal != null : "the animal is null";
+		assert the_animals.containsKey(animal) : "the animal is not exist";
 		the_animals.remove(animal);
 		System.out.println(animal + "removed");
 	}
@@ -86,9 +87,7 @@ public class Cage
 	public void print() {
 		System.out.println("Cage " + the_kind);
 		System.out.println("kind\tname\tage");
-		for (Animal animal : the_animals.values()) {
-			animal.print();
-		}
+		the_animals.values().forEach(Animal::print);
 	}
 
 	public String toString() {
