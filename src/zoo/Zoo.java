@@ -125,16 +125,18 @@ public class Zoo
 	// Assign an employee to a manager (and vice versa)
 	public void assignManager(int managerNumber, Employee employee) {
 		Employee manager = the_employees.get(managerNumber);
-		// Third assignment: Is that really a manager?
-		employee.setManager(manager); // inform the employee ...
-		Vector<Employee> employees = manager.getEmployees();
-		employees.add(employee); // ... and his manager
+		if (manager instanceof Manager) {
+			// Third assignment: Is that really a manager?
+			employee.setManager(manager); // inform the employee ...
+			Vector<Employee> employees = ((Manager)manager).getEmployees();
+			employees.add(employee); // ... and his manager
+		}
 	} // assignManager
 
 	// Do we have any managers ?
 	public boolean hasManagers() {
 		for (Employee employee : the_employees.values()) {
-			if (Employee.MANAGER == employee.getFunction())
+			if (employee instanceof Manager)
 				return true;
 		}
 		return false;
@@ -149,7 +151,7 @@ public class Zoo
 	public void showManagers() {
 		System.out.println("List of all managers");
 		for (Employee employee : the_employees.values()) {
-			if (Employee.MANAGER == employee.getFunction()) {
+			if (employee instanceof Manager) {
 				employee.print();
 				System.out.println();
 			}
@@ -191,7 +193,14 @@ public class Zoo
 		else {
 			int costs = 0;
 			for (Employee employee : the_employees.values())
-				costs += employee.getSalary();
+				if (employee instanceof Manager){
+					costs += ((Manager) employee).getSalary();
+				}else if (employee instanceof Keeper){
+					costs += ((Keeper) employee).getSalary();
+				}else if (employee instanceof Administrator){
+					costs += ((Administrator)employee).getSalary();
+				}
+
 			System.out.println(costs + " euro");
 		}
 	} // showCosts
