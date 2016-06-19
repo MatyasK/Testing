@@ -1,5 +1,7 @@
 package zoo;
 
+import java.io.PrintWriter;
+
 /**
  * Created by Matyas on 6/14/2016.
  */
@@ -24,5 +26,17 @@ public class Keeper extends Employee {
 
     public float getSalary(){
         return 2000 + the_cage.size() * 100;
+    }
+
+    @Override
+    void print() {
+        super.print();
+        System.out.print("\ttaking care of " + the_cage.getKind());
+    }
+
+    @Override
+    public void saveFile(PrintWriter out) {
+        out.println("2\t4\t" // action 2=employee, function 4=keeper
+                + the_number + "\t" + the_name + "\t" + the_age + "\t" + the_cage.getKind() + "\t" + the_boss.the_number);
     }
 }

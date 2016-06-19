@@ -1,5 +1,6 @@
 package zoo;
 
+import java.io.PrintWriter;
 import java.util.Vector;
 
 /**
@@ -26,5 +27,17 @@ public class Manager extends Employee {
 
     public float getSalary(){
         return 5000 + the_employees.size() * 500;
+    }
+
+    @Override
+    void print() {
+        super.print();
+        System.out.print("\thas " + the_employees.size() + " employees");
+    }
+
+    @Override
+    public void saveFile(PrintWriter out) {
+        out.println("2\t1\t" // action 2=employee, function 1=manager
+                + the_number + "\t" + the_name + "\t" + the_age);
     }
 }

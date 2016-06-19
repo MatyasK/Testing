@@ -43,10 +43,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import util.ReadInput;
-import zoo.Animal;
-import zoo.Zoo;
-import zoo.Cage;
-import zoo.Employee;
+import zoo.*;
 
 
 /**
@@ -260,10 +257,10 @@ class CLI
 		switch (werknemerSoort)
 		{
 		case 1: // Manager
-			werknemer = new Employee(Employee.MANAGER, werknemerNummer, werknemerNaam, werknemerLeeftijd);
+			werknemer = new Manager( werknemerNummer, werknemerNaam, werknemerLeeftijd);
 			break;
 		case 2: // Boekhouder
-			werknemer = new Employee(Employee.ADMINISTRATOR, werknemerNummer, werknemerNaam, werknemerLeeftijd);
+			werknemer = new Administrator( werknemerNummer, werknemerNaam, werknemerLeeftijd);
 			koppelAanManager(werknemer);
 			break;
 		case 4: // Oppasser
@@ -272,8 +269,8 @@ class CLI
 			Cage kooi = dierentuin.findCage(dierSoort);
 			if (kooi == null)
 				kooi = dierentuin.makeCage(dierSoort);
-			werknemer = new Employee(Employee.KEEPER, werknemerNummer, werknemerNaam, werknemerLeeftijd);
-			werknemer.setCage(kooi);
+			werknemer = new Keeper( werknemerNummer, werknemerNaam, werknemerLeeftijd);
+			((Keeper)werknemer).setThe_cage(kooi);
 			koppelAanManager(werknemer);
 			break;
 		}
@@ -364,12 +361,12 @@ class CLI
 					{
 
 					case 1: { // Manager maken
-						werknemer = new Employee(Employee.MANAGER, nummer, naam, leeftijd);
+						werknemer = new Manager( nummer, naam, leeftijd);
 						}
 						break;
 
 					case 2: { // Boekhouder maken
-						werknemer = new Employee(Employee.ADMINISTRATOR, nummer, naam, leeftijd);
+						werknemer = new Administrator(nummer, naam, leeftijd);
 						// lees nummer van zijn baas in
 						int baas = scanner.nextInt();
 						dierentuin.assignManager(baas, werknemer);
@@ -381,8 +378,8 @@ class CLI
 						String soort = scanner.next(alfanum);
 						Cage kooi = dierentuin.findCage(soort);
 						if (kooi == null) kooi = dierentuin.makeCage(soort);
-						werknemer = new Employee(Employee.KEEPER, nummer, naam, leeftijd);
-						werknemer.setCage(kooi);
+						werknemer = new Keeper(nummer, naam, leeftijd);
+						((Keeper)werknemer).setThe_cage(kooi);
 						// lees nummer van zijn baas in
 						int baas = scanner.nextInt();
 						dierentuin.assignManager(baas, werknemer);

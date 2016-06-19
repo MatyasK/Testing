@@ -61,10 +61,7 @@ import gui.Questioner;
 import gui.Reporter;
 import gui.UseCaseHandler;
 import gui.UseCaseSet;
-import zoo.Animal;
-import zoo.Zoo;
-import zoo.Cage;
-import zoo.Employee;
+import zoo.*;
 
 
 /**
@@ -349,11 +346,11 @@ class GUI implements UseCaseHandler
 		switch (employeeFunction)
 		{
 		case 1: // Manager
-			employee = new Employee(Employee.MANAGER, employeeNumber, employeeName, employeeAge);
+			employee = new Manager(employeeNumber, employeeName, employeeAge);
 			break;
 
 		case 2: // Administrator
-			employee = new Employee(Employee.ADMINISTRATOR, employeeNumber, employeeName, employeeAge);
+			employee = new Administrator( employeeNumber, employeeName, employeeAge);
 			// and we also have to do ...
 			assignManager(employee);
 			break;
@@ -364,8 +361,8 @@ class GUI implements UseCaseHandler
 			animalKind = Questioner.askString("what kind of animal", "");
 			Cage cage = zoo.findCage(animalKind);
 			if (cage == null) cage = zoo.makeCage(animalKind);
-			employee = new Employee(Employee.KEEPER, employeeNumber, employeeName, employeeAge);
-			employee.setCage(cage);
+			employee = new Keeper( employeeNumber, employeeName, employeeAge);
+			((Keeper)employee).setThe_cage(cage);
 			assignManager(employee);
 			break;
 		}
@@ -489,12 +486,12 @@ class GUI implements UseCaseHandler
 					switch (category) // what type of employee?
 					{
 					case 1: { // Manager
-						employee = new Employee(Employee.MANAGER, number, name, age);
+						employee = new Manager(number, name, age);
 						}
 						break;
 
 					case 2: { // Administrator
-						employee = new Employee(Employee.ADMINISTRATOR, number, name, age);
+						employee = new Administrator( number, name, age);
 						// read number of his boss
 						int boss = scanner.nextInt();
 						zoo.assignManager(boss, employee);
@@ -506,8 +503,8 @@ class GUI implements UseCaseHandler
 						String kind = scanner.next(alfanum);
 						Cage cage = zoo.findCage(kind);
 						if (cage == null) cage = zoo.makeCage(kind);
-						employee = new Employee(Employee.KEEPER, number, name, age);
-						employee.setCage(cage);
+						employee = new Keeper(number, name, age);
+						((Keeper)employee).setThe_cage(cage);
 						// read number of his boss
 						int boss = scanner.nextInt();
 						zoo.assignManager(boss, employee);

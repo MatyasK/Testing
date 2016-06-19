@@ -10,8 +10,7 @@ import java.io.PrintWriter;
  * 
  * @author R.Akkersdijk
  */
-public class Employee
-{
+public abstract class Employee {
 	// Utility function
 
     /**
@@ -98,48 +97,22 @@ public class Employee
 		the_boss = boss;
 	}
 
-//	public float getSalary(Employee employee) {
-//		float salary = 0;
-//		if (employee instanceof Manager){
-//
-//		}
-//		return salary;
-//	}
+	public abstract float getSalary();
 
 	public String toString() {
 		return String.format("%10s %3d", "employee", the_number);
 	}
-
 	void print() {
 		System.out.print(this + "\t" + the_name + "\t" + the_age + "\t" + getSalary() + " euro");
 		if (the_boss != null)
 			System.out.print("\tworking for " + the_boss.getNumber());
 		else
 			System.out.print("\thas gone away");
-		if (the_function == MANAGER)
-			System.out.print("\thas " + the_employees.size() + " employees");
-		if (the_function == KEEPER)
-			System.out.print("\ttaking care of " + the_cage.getKind());
+
 	}
 
 	// =====================================
-	public void saveFile(PrintWriter out) {
-		assert out != null : "null printwriter";
-		switch (the_function)
-		{
-		case ADMINISTRATOR:
-			out.println("2\t2\t" // action 2=employee, function 2=administrator
-					+ the_number + "\t" + the_name + "\t" + the_age + "\t" + the_boss.the_number);
-			break;
-		case MANAGER:
-			out.println("2\t1\t" // action 2=employee, function 1=manager
-					+ the_number + "\t" + the_name + "\t" + the_age);
-			break;
-		case KEEPER:
-			out.println("2\t4\t" // action 2=employee, function 4=keeper
-					+ the_number + "\t" + the_name + "\t" + the_age + "\t" + the_cage.getKind() + "\t" + the_boss.the_number);
-			break;
-		}
+	public abstract void saveFile(PrintWriter out);
 	}
 
-}
+

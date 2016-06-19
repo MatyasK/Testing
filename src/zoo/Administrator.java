@@ -1,5 +1,7 @@
 package zoo;
 
+import java.io.PrintWriter;
+
 /**
  * Created by Matyas on 6/14/2016.
  */
@@ -19,4 +21,9 @@ public class Administrator extends Employee {
         return 1000 + the_age * 50;
     }
 
+    @Override
+    public void saveFile(PrintWriter out) {
+        out.println("2\t2\t" // action 2=employee, function 2=administrator
+                + the_number + "\t" + the_name + "\t" + the_age + "\t" + the_boss.the_number);
+    }
 }
